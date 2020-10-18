@@ -8,7 +8,7 @@ import com.github.javaparser.ast.stmt.ForStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
-public class WeightedMethodsForClassVisitor extends VoidVisitorAdapter<Object> {
+public class ComplexWeightedMethodsVisitor extends VoidVisitorAdapter<Object> {
 	private Map<String, Integer> methodNamesAndWeights = new HashMap<>();
 	private String className;
 	private String methodName;

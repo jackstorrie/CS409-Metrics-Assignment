@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -8,6 +9,16 @@ import com.github.javaparser.ast.CompilationUnit;
 
 
 public class LackOfCohesionOfMethodsMetric {
+	
+	public static void main(String[] args) throws Exception {
+		
+		LackOfCohesionOfMethodsMetric lackOfCohesionOfMethodsMetric = new LackOfCohesionOfMethodsMetric();
+		Collection<SystemUnderTest> systems = SystemsUnderTestReader.GetSystemsUnderTest();
+		for (SystemUnderTest system: systems) {
+			lackOfCohesionOfMethodsMetric.printMetricForSystem(system);
+		}
+	}
+	
 	
 	public void printMetricForSystem(SystemUnderTest system) {
 		

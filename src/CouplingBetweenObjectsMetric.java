@@ -10,6 +10,16 @@ import com.github.javaparser.ast.CompilationUnit;
 
 
 public class CouplingBetweenObjectsMetric {
+	
+	public static void main(String[] args) throws Exception {
+			
+		CouplingBetweenObjectsMetric couplingBetweenObjectsMetric = new CouplingBetweenObjectsMetric();
+		Collection<SystemUnderTest> systems = SystemsUnderTestReader.GetSystemsUnderTest();
+		for (SystemUnderTest system: systems) {
+			couplingBetweenObjectsMetric.printMetricForSystem(system);
+		}
+	}
+	
 
 	
 	public void printMetricForSystem(SystemUnderTest system) {
