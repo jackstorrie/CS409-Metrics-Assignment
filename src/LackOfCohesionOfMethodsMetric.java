@@ -6,6 +6,7 @@ import java.util.Set;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 
+
 public class LackOfCohesionOfMethodsMetric {
 	
 	public void printMetricForSystem(SystemUnderTest system) {
@@ -13,11 +14,29 @@ public class LackOfCohesionOfMethodsMetric {
 			CompilationUnit cu = StaticJavaParser.parse(fileContents);
 			LackOfCohesionVisitor visitor = new LackOfCohesionVisitor();
 			cu.accept(visitor, null);
+			
 			Map<String, Set<String>> methodNameAndVars = visitor.getMethodToFieldsMapping();
-//			System.out.println(methodNameAndVars.keySet());
-			System.out.println("Class: " + visitor.getClassName());
-			removeNonFields(methodNameAndVars, visitor.getFields());
+
+			Map<String, Set<String>> methodNameAndFields = 
+				removeNonFields(methodNameAndVars, visitor.getFields());
+		
+			int lackOfCohesionScore = 0;
+			String [] methodsAsArray = setToArray(methodNameAndFields.keySet());
+			for(int i = 0; i < methodsAsArray.length - 1; i++) {
+				for (int j = i + 1; j < methodsAsArray.length; j++) {
+					for(String field: methodNameAndFields.get(methodsAsArray[i])) {
+						if(methodNameAndFields.get(methodsAsArray[j]).contains(field)){
+							lackOfCohesionScore++;
+							continue;
+						}
+					}		
+				}
+			}
+			System.out.println("Class: " + visitor.getClassName() + " Lack of cohesion score: " 
+					+ lackOfCohesionScore);
+			
 		}
+		
 		
 	}
 	
@@ -40,10 +59,16 @@ public class LackOfCohesionOfMethodsMetric {
 			onlyFields = new HashSet<>();
 		}
 
-		for (String method: result.keySet()) {
-			System.out.println("method: " + method + " all the fields: " + result.get(method));
-		}
-		return null;
+		
+		return result;
+		
+	}
+	
+	public static String[] setToArray(Set<String> setOfMethods) {
+		String[] myArray = new String[setOfMethods.size()];
+		setOfMethods.toArray(myArray);
+		
+		return myArray;
 		
 	}
 
