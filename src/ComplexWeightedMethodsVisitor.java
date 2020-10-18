@@ -9,6 +9,7 @@ import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class ComplexWeightedMethodsVisitor extends VoidVisitorAdapter<Object> {
+	
 	private Map<String, Integer> methodNamesAndWeights = new HashMap<>();
 	private String className;
 	private String methodName;
@@ -53,7 +54,7 @@ public class ComplexWeightedMethodsVisitor extends VoidVisitorAdapter<Object> {
 		return className;
 	}
 	
-	public Map<String, Integer> getClassNamesAndWeights() {
+	public Map<String, Integer> getMethodNamesAndWeights() {
 		return methodNamesAndWeights;
 	}
 
