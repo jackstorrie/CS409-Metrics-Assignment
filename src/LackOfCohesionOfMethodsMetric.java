@@ -10,6 +10,8 @@ import com.github.javaparser.ast.CompilationUnit;
 public class LackOfCohesionOfMethodsMetric {
 	
 	public void printMetricForSystem(SystemUnderTest system) {
+		
+		System.out.println(system.getName());
 		for (String fileContents: system.getSourceFileContents()) {
 			CompilationUnit cu = StaticJavaParser.parse(fileContents);
 			LackOfCohesionVisitor visitor = new LackOfCohesionVisitor();

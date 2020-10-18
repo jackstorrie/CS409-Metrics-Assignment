@@ -45,7 +45,6 @@ public class CouplingBetweenObjectsMetric {
 			}
 		}
 		
-		System.out.println(result);
 		for (Map.Entry<String, Set<String>> entry : result.entrySet()) {
 		    System.out.println("Class = " + entry.getKey() + " " +"Coupling between objects value: "+ entry.getValue().size());
 		}
