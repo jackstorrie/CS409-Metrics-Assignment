@@ -55,6 +55,10 @@ public class ComplexWeightedMethodsVisitor extends VoidVisitorAdapter<Object> {
 	}
 	
 	public Map<String, Integer> getMethodNamesAndWeights() {
+		if (methodName!= null) {
+			methodNamesAndWeights.put(methodName, weightCount);
+		}
+		methodName = null;
 		return methodNamesAndWeights;
 	}
 
