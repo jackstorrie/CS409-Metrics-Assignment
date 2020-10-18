@@ -6,11 +6,13 @@ public class MetricCalculator {
 		CouplingBetweenObjectsMetric couplingMetric = new CouplingBetweenObjectsMetric();
 		LackOfCohesionOfMethodsMetric lackOfCohesionMetric = new LackOfCohesionOfMethodsMetric();
 		ResponseForClassMetric responseForClassMetric = new ResponseForClassMetric();
+		WeighterMethodsForClassMetric weightedMethodsForClassMetric = new WeighterMethodsForClassMetric();
 		Collection<SystemUnderTest> systems = SystemsUnderTestReader.GetSystemsUnderTest();
 		for (SystemUnderTest system: systems) {
 			//lackOfCohesionMetric.printMetricForSystem(system);
 			//couplingMetric.printMetricForSystem(system);
-			responseForClassMetric.printMetricForSystem(system);
+			//responseForClassMetric.printMetricForSystem(system);
+			weightedMethodsForClassMetric.printMetricForSystem(system);
 		}
 	}
 
